@@ -1,12 +1,9 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import Oath from '../components/Oath';
 
 const SignUp = () => {
-  const [formData, setFormData] = useState({
-    username: '',
-    email: '',
-    password: '',
-  });
+  const [formData, setFormData] = useState({});
   const [error, setError] = useState(null);
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -54,8 +51,8 @@ const SignUp = () => {
           type="text"
           placeholder="Username"
           className="border rounded-lg p-3"
-          id="username"
-          value={formData.username}
+          id="userName"
+          value={formData.userName}
           onChange={handleChange}
           required
         />
@@ -83,6 +80,7 @@ const SignUp = () => {
         >
           {loading ? 'Loading...' : 'Sign Up'}
         </button>
+        <Oath />
       </form>
       <div className="flex mt-5 gap-2">
         <p>Already have an account?</p>

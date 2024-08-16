@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
 import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice';
+import Oath from '../components/Oath';
 
 const SignIn = () => {
   const [formData, setFormData] = useState({});
@@ -27,7 +28,7 @@ const SignIn = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      });
+      }); 
       const data = await res.json();
 
       if (data.success === false) {
@@ -70,11 +71,12 @@ const SignIn = () => {
         >
           {loading ? 'Loading...' : 'Sign In'}
         </button>
+        <Oath />
       </form>
       <div className="flex mt-5 gap-2">
         <p>Dont have an account?</p>
         <Link to="/sign-up">
-          <span className="text-blue-700">Sign In</span>
+          <span className="text-blue-700">Sign Up</span>
         </Link>
       </div>
     </div>
