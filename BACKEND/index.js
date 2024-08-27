@@ -3,6 +3,7 @@ const mongoose=require("mongoose");
 const dotenv=require("dotenv");
 const userRouter=require("./routes/userRouter");
 const authRouter=require("./routes/authRouter");
+const cookieParser=require("cookie-parser");
 dotenv.config();
 mongoose.connect(`${process.env.MONGO}/heaven_hub`).then(()=>{
     console.log("connected to db");
@@ -12,6 +13,7 @@ mongoose.connect(`${process.env.MONGO}/heaven_hub`).then(()=>{
 })
 const app=express();
 app.use(express.json());
+app.use(cookieParser());
 
 app.listen(3000,()=>{
     console.log("server is runnning in 3000");
