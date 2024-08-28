@@ -1,9 +1,17 @@
 import React, { useEffect, useState, useRef } from 'react';
 import { getDownloadURL, getStorage, ref, uploadBytesResumable } from 'firebase/storage';
-import { updateUserStart, updateUserSuccess, updateUserFailure ,deleteUserFailure,deleteUserStart,deleteUserSuccess} from '../redux/user/userSlice';
-import { useSelector } from 'react-redux';
+import {
+  updateUserStart,
+  updateUserSuccess,
+  updateUserFailure,
+  deleteUserFailure,
+  deleteUserStart,
+  deleteUserSuccess,
+  signOutUserStart,
+} from '../redux/user/userSlice';
+import { useSelector, useDispatch } from 'react-redux';
 import { app } from '../firebase';
-import { useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 
 const Profile = () => {
   const fileRef = useRef(null);
@@ -13,8 +21,13 @@ const Profile = () => {
   const [file, setFile] = useState(undefined);
   const [filePer, setFilePer] = useState(0);
   const [fileUploadError, setFileUploadError] = useState(false);
-  const [formData, setFormData] = useState({});
-  const [updateSuccess, setUpdateSuccess]=useState(false);
+  const [formData, setFormData] = useState({
+    userName: currentUser.userName,
+    email: currentUser.email,
+    avatar: currentUser.avatar,
+    password: currentUser.password,
+  });
+  const [updateSuccess, setUpdateSuccess] = useState(false);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -37,11 +50,12 @@ const Profile = () => {
         setFilePer(Math.round(progress));
       },
       (error) => {
+        console.error('File upload error:', error); // Log specific error
         setFileUploadError(true);
       },
       () => {
         getDownloadURL(uploadTask.snapshot.ref).then((downloadURL) =>
-          setFormData({ ...formData, avatar: downloadURL })
+          setFormData((prevData) => ({ ...prevData, avatar: downloadURL }))
         );
       }
     );
@@ -50,6 +64,7 @@ const Profile = () => {
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.id]: e.target.value });
   };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -72,11 +87,12 @@ const Profile = () => {
     } catch (err) {
       dispatch(updateUserFailure(err.message));
     }
-  }
-  const handleDeleteUser= async ()=>{
-    try{
+  };
+
+  const handleDeleteUser = async () => {
+    try {
       dispatch(deleteUserStart());
-      const res=await fetch(`/api/user/delete/${currentUser._id}`, {
+      const res = await fetch(`/api/user/delete/${currentUser._id}`, {
         method: 'DELETE',
       });
       const data = await res.json();
@@ -85,10 +101,26 @@ const Profile = () => {
         return;
       }
       dispatch(deleteUserSuccess(data));
-    }catch(error){
+    } catch (error) {
       dispatch(deleteUserFailure(error.message));
     }
-  }
+  };
+
+  const handleSignOut = async () => {
+    try {
+      dispatch(signOutUserStart());
+      const res = await fetch('/api/auth/signout');
+      const data = await res.json();
+      if (data.success === false) {
+        dispatch(deleteUserFailure(data.message));
+        return;
+      }
+      dispatch(deleteUserSuccess(data));
+    } catch (error) {
+      dispatch(deleteUserFailure(data.message));
+    }
+  };
+
   return (
     <div className='p-3 max-w-lg mx-auto'>
       <h1 className='text-3xl font-bold text-center my-7'>Profile</h1>
@@ -103,7 +135,7 @@ const Profile = () => {
         <img
           onClick={() => fileRef.current.click()}
           className='rounded-full self-center h-24 w-24'
-          src={formData.avatar}
+          src={formData.avatar || currentUser.avatar} // Ensure avatar is displayed
           alt='profile'
         />
         <p>
@@ -124,7 +156,7 @@ const Profile = () => {
           type='text'
           placeholder='userName'
           id='userName'
-          defaultValue={currentUser.userName}
+          value={formData.userName}
           onChange={handleChange}
         />
         <input
@@ -132,7 +164,7 @@ const Profile = () => {
           type='email'
           placeholder='email'
           id='email'
-          defaultValue={currentUser.email}
+          value={formData.email}
           onChange={handleChange}
         />
         <input
@@ -140,18 +172,31 @@ const Profile = () => {
           type='password'
           placeholder='password'
           id='password'
-          defaultValue={currentUser.password}
+          value={formData.password}
           onChange={handleChange}
         />
-        <button disabled={loading} className='border p-3 text-white uppercase rounded-lg bg-slate-700 hover:opacity-85'>
-          {loading ? 'loading...' : 'UPDATE'}
+        <button
+          disabled={loading}
+          className='border p-3 text-white uppercase rounded-lg bg-slate-700 hover:opacity-85'
+        >
+          {loading ? 'Loading...' : 'UPDATE'}
         </button>
+        <Link
+          className='p-3 rounded-lg bg-green-600 uppercase text-center font-bold text-white'
+          to={'/create-listing'}
+        >
+          Create Listing
+        </Link>
       </form>
       <div className='flex justify-between mt-5'>
-        <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>Delete Account</span>
-        <span className='text-red-700 cursor-pointer'>Sign Out</span>
+        <span onClick={handleDeleteUser} className='text-red-700 cursor-pointer'>
+          Delete Account
+        </span>
+        <span onClick={handleSignOut} className='text-red-700 cursor-pointer'>
+          Sign Out
+        </span>
       </div>
-      <p className='text-red-700 mt-5'>{error ? error : ''}</p>
+      <p className='text-red-700 mt-5'>{error || ''}</p>
       <p className='text-green-700 mt-5'>
         {updateSuccess ? 'User is updated successfully!' : ''}
       </p>

@@ -3,6 +3,8 @@ const mongoose=require("mongoose");
 const dotenv=require("dotenv");
 const userRouter=require("./routes/userRouter");
 const authRouter=require("./routes/authRouter");
+const listingRouter=require("./routes/listingRouter");
+
 const cookieParser=require("cookie-parser");
 dotenv.config();
 mongoose.connect(`${process.env.MONGO}/heaven_hub`).then(()=>{
@@ -21,6 +23,7 @@ app.listen(3000,()=>{
 
 app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
+app.use("/api/listing",listingRouter);
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode || 500;
