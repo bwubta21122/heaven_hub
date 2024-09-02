@@ -1,5 +1,5 @@
 const express=require("express");
-const { updateUserInfo,deleteUser,getUserListing} = require("../controllers/userController");
+const { updateUserInfo,deleteUser,getUserListing,getUser} = require("../controllers/userController");
 const route=express.Router();
 const {veifyToken} =require("../utils/verifyUser")
 route.get("/test",(erq,res)=>{
@@ -8,4 +8,6 @@ route.get("/test",(erq,res)=>{
 route.post("/update/:id",veifyToken, updateUserInfo);
 route.delete("/delete/:id",veifyToken, deleteUser);
 route.get('/listings/:id',veifyToken,getUserListing);
+route.get('/:id',veifyToken,getUser);
+
 module.exports=route;
