@@ -204,7 +204,7 @@ const CreateListing = () => {
             <div className="flex items-center gap-2">
               <input
                 type="number"
-                className="p-3 border w-14 border-gray-300 rounded-lg"
+                className="p-3 border w-[70px] border-gray-300 rounded-lg"
                 id="regularPrice"
                 required
                 onChange={handleChange} value={formData.regularPrice}
@@ -218,7 +218,7 @@ const CreateListing = () => {
               <div className="flex items-center gap-2">
               <input
                 type="number"
-                className="p-3 border w-14 border-gray-300 rounded-lg"
+                className="p-3 border w-[70px] border-gray-300 rounded-lg"
                 id="discountPrice"
                 required
                 onChange={handleChange} value={formData.discountPrice}
