@@ -15,6 +15,7 @@ const Search = () => {
     });
     const [loading, setLoading] = useState(false);
     const [listing, setListing] = useState([]);
+    const [showMore, setShowMore] = useState(false);
     console.log(listing);
     useEffect(() => {
         const urlParams = new URLSearchParams(location.search);
@@ -41,6 +42,9 @@ const Search = () => {
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json();
+            if (data.length > 5) {
+                setShowMore(true);
+            }
             setListing(data);
             setLoading(false);
         };
@@ -74,6 +78,19 @@ const Search = () => {
         urlParams.set('order', sidebardata.order);
         const searchQuery = urlParams.toString();
         navigate(`/search?${searchQuery}`);
+    }
+    const onShowMore = async () => {
+        const numberOfListings = listing.length;
+        const startIndex = numberOfListings;
+        const urlParams = new URLSearchParams(location.search);
+        urlParams.set('startIndex', startIndex);
+        const searchQuery = urlParams.toString();
+        const res = await fetch(`/api/listing/get?${searchQuery}`);
+        const data = await res.json();
+        if (data.length < 6) {
+            setShowMore(false);
+        }
+        setListing([...listing, ...data]);
     }
     return (
         <div className='flex flex-col md:flex-row'>
@@ -131,17 +148,20 @@ const Search = () => {
                     </button>
                 </form>
             </div>
-                <div className="flex-1">
-                    <h1 className='text-3xl font-bold border-b p-3 mt-5 text-blue-600'>Listing Result :</h1>
-                    <div className="p-7 flex flex-wrap gap-4">
-                        {!loading && listing.length === 0 && (
-                            <p className='text-xl text-red-600'>No listing found!</p>)}
-                        {loading && (<p className='text-xl text-blue-600 text-center w-full'>Loading...</p>)}
-                        {!loading && listing && listing.map((listing) => (
-                            <ListingItem key={listing._id} listing={listing} />
-                        ))}
-                    </div>
+            <div className="flex-1">
+                <h1 className='text-3xl font-bold border-b p-3 mt-5 text-blue-600'>Listing Result :</h1>
+                <div className="p-7 flex flex-wrap gap-4">
+                    {!loading && listing.length === 0 && (
+                        <p className='text-xl text-red-600'>No listing found!</p>)}
+                    {loading && (<p className='text-xl text-blue-600 text-center w-full'>Loading...</p>)}
+                    {!loading && listing && listing.map((listing) => (
+                        <ListingItem key={listing._id} listing={listing} />
+                    ))}
+                    {showMore && (
+                        <button onClick={onShowMore} className='text-green-700 hover:underline p-7 text-center w-full'>Show More</button>
+                        )}
                 </div>
+            </div>
         </div>
     )
 }
