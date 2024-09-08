@@ -5,7 +5,8 @@ import { initializeApp } from "firebase/app";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCoHOLGkHs6yGUXP7yAQkCvJ9V1Foe-ElQ",
+  //import.meta.env.VITE_FIREBASE_API_KEY
+  apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: "heaven-hub-8cb28.firebaseapp.com",
   projectId: "heaven-hub-8cb28",
   storageBucket: "heaven-hub-8cb28.appspot.com",

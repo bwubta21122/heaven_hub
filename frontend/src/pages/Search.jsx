@@ -39,11 +39,14 @@ const Search = () => {
         }
         const fetchListing = async () => {
             setLoading(true);
+            urlParams.set('limit', 6);
             const searchQuery = urlParams.toString();
             const res = await fetch(`/api/listing/get?${searchQuery}`);
             const data = await res.json();
             if (data.length > 5) {
                 setShowMore(true);
+            }else{
+                setShowMore(false);
             }
             setListing(data);
             setLoading(false);
@@ -84,6 +87,7 @@ const Search = () => {
         const startIndex = numberOfListings;
         const urlParams = new URLSearchParams(location.search);
         urlParams.set('startIndex', startIndex);
+        urlParams.set('limit', 6);
         const searchQuery = urlParams.toString();
         const res = await fetch(`/api/listing/get?${searchQuery}`);
         const data = await res.json();
