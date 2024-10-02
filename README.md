@@ -15,14 +15,12 @@ Database: MongoDB
 Authentication: JWT (JSON Web Token)
 Build Tool: Vite
 
-#Installation
+# Installation
 Clone the repository:
 
-bash
-Copy code
 git clone https://github.com/abhinash3007/heaven-hub.git
 cd heaven-hub
-#Install dependencies for both frontend and backend:
+# Install dependencies for both frontend and backend:
 
 # For frontend
 cd frontend
@@ -33,23 +31,24 @@ cd ../backend
 npm install
 Create a .env file in the backend directory with the following variables:
 
-#plaintext
+# plaintext
 MONGO_URI=your_mongo_connection_string
 JWT_SECRET=your_jwt_secret
 PORT=5000
 Run the backend server:
 
-bash
+
 npm run dev
 #Run the frontend (from the frontend directory):
 
-bash
 npm run dev
 API Endpoints
-Property Listings
+
+# Property Listings
 GET /api/listing/get?type=rent&limit=4: Get latest properties for rent.
 GET /api/listing/get?type=sale&limit=4: Get latest properties for sale.
 GET /api/listing/get?offer=true&limit=4: Get properties with special offers.
-Authentication
+
+# Authentication
 POST /api/auth/register: Register a new user.
 POST /api/auth/login: Login for existing users.
