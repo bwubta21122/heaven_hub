@@ -20,7 +20,7 @@ Clone the repository:
 
 bash
 Copy code
-git clone https://github.com/yourusername/heaven-hub.git
+git clone https://github.com/abhinash3007/heaven-hub.git
 cd heaven-hub
 Install dependencies for both frontend and backend:
 
