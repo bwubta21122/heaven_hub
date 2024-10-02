@@ -29,7 +29,8 @@ npm install
 # For backend
 cd ../backend
 npm install
-Create a .env file in the backend directory with the following variables:
+
+# Create a .env file in the backend directory with the following variables:
 
 # plaintext
 MONGO_URI=your_mongo_connection_string
@@ -46,9 +47,12 @@ API Endpoints
 
 # Property Listings
 GET /api/listing/get?type=rent&limit=4: Get latest properties for rent.
+
 GET /api/listing/get?type=sale&limit=4: Get latest properties for sale.
+
 GET /api/listing/get?offer=true&limit=4: Get properties with special offers.
 
 # Authentication
 POST /api/auth/register: Register a new user.
+
 POST /api/auth/login: Login for existing users.
