@@ -1,7 +1,8 @@
-import React, { useState } from 'react'
+
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
-import { signInStart,signInSuccess,signInFailure } from '../redux/user/userSlice';
+import { signInStart, signInSuccess, signInFailure } from '../redux/user/userSlice';
 import Oath from '../components/Oath';
 
 const SignIn = () => {
@@ -9,7 +10,7 @@ const SignIn = () => {
   const { error, loading } = useSelector((state) => state.user);
 
   const navigate = useNavigate();
-  const dispatch=useDispatch();
+  const dispatch = useDispatch();
 
   const handleChange = (e) => {
     setFormData({
@@ -28,7 +29,7 @@ const SignIn = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify(formData),
-      }); 
+      });
       const data = await res.json();
 
       if (data.success === false) {
@@ -38,46 +39,54 @@ const SignIn = () => {
       dispatch(signInSuccess(data));
       navigate('/');
     } catch (error) {
-      dispatch(signInFailure(data.message));
+      dispatch(signInFailure(error.message));
     }
   };
 
   return (
-    <div className="p-3 max-w-lg mx-auto">
-      <h1 className="text-3xl text-center my-7 font-semibold">Sign In</h1>
-      {error && <div className="text-red-500">{error}</div>}
-      <form onSubmit={handleSubmit} className="flex flex-col gap-4">
-        <input
-          type="email"
-          placeholder="Email"
-          className="border rounded-lg p-3"
-          id="email"
-          value={formData.email}
-          onChange={handleChange}
-          required
-        />
-        <input
-          type="password"
-          placeholder="Password"
-          className="border rounded-lg p-3"
-          id="password"
-          value={formData.password}
-          onChange={handleChange}
-          required
-        />
-        <button
-          disabled={loading}
-          className="border disabled:opacity-80 rounded-lg p-3 bg-slate-700 text-white uppercase hover:opacity-95"
-        >
-          {loading ? 'Loading...' : 'Sign In'}
-        </button>
-        <Oath />
-      </form>
-      <div className="flex mt-5 gap-2">
-        <p>Dont have an account?</p>
-        <Link to="/sign-up">
-          <span className="text-blue-700">Sign Up</span>
-        </Link>
+    <div className="flex justify-center items-center min-h-screen bg-gray-100">
+      <div className="p-6 max-w-md w-full bg-white rounded-lg shadow-md">
+        <h1 className="text-3xl text-center mb-6 font-semibold text-blue-600">Sign In</h1>
+        {error && <div className="text-red-500 mb-4">{error}</div>}
+        <form onSubmit={handleSubmit} className="flex flex-col gap-4">
+          <div className="relative">
+            <input
+              type="email"
+              placeholder="Email"
+              className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="email" className="absolute top-2 left-3 text-gray-400 transition-all duration-200">Email</label>
+          </div>
+          <div className="relative">
+            <input
+              type="password"
+              placeholder="Password"
+              className="border rounded-lg p-3 w-full focus:outline-none focus:ring-2 focus:ring-blue-500"
+              id="password"
+              value={formData.password}
+              onChange={handleChange}
+              required
+            />
+            <label htmlFor="password" className="absolute top-2 left-3 text-gray-400 transition-all duration-200">Password</label>
+          </div>
+          <button
+            disabled={loading}
+            className="border disabled:opacity-80 rounded-lg p-3 bg-blue-600 text-white uppercase hover:bg-blue-700 transition duration-300"
+          >
+            {loading ? 'Loading...' : 'Sign In'}
+          </button>
+          <Oath />
+        </form>
+        <div className="flex mt-5 gap-2 justify-center">
+          <p>Don’t have an account?</p>
+          <Link to="/sign-up">
+            <span className="text-blue-600 hover:underline">Sign Up</span>
+          </Link>
+        </div>
       </div>
     </div>
   );

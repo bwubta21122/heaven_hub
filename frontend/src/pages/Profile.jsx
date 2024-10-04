@@ -53,7 +53,7 @@ const Profile = () => {
         setFilePer(Math.round(progress));
       },
       (error) => {
-        console.error('File upload error:', error); // Log specific error
+        console.error('File upload error:', error); 
         setFileUploadError(true);
       },
       () => {
@@ -156,7 +156,7 @@ const Profile = () => {
     }
   }
   return (
-    <div className='p-3 max-w-lg mx-auto'>
+    <div className='p-3 pt-32 max-w-lg mx-auto'>
       <h1 className='text-3xl font-bold text-center my-7'>Profile</h1>
       <form onSubmit={handleSubmit} className='flex flex-col gap-4'>
         <input
@@ -169,7 +169,7 @@ const Profile = () => {
         <img
           onClick={() => fileRef.current.click()}
           className='rounded-full self-center h-24 w-24'
-          src={formData.avatar || currentUser.avatar} // Ensure avatar is displayed
+          src={formData.avatar || currentUser.avatar}
           alt='profile'
         />
         <p>
@@ -259,3 +259,5 @@ const Profile = () => {
 };
 
 export default Profile;
+
+

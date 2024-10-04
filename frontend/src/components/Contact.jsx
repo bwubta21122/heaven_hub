@@ -1,9 +1,11 @@
-import React, { useEffect, useState } from 'react'
+
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 const Contact = ({ listing }) => {
     const [landlord, setLandlord] = useState(null);
-    const [message, setMessage] = useState(null);
+    const [message, setMessage] = useState('');
+
     useEffect(() => {
         const fetchLandLord = async () => {
             try {
@@ -16,23 +18,29 @@ const Contact = ({ listing }) => {
         }
         fetchLandLord();
     }, [listing.userRef]);
+
     return (
-        <div>
-            {landlord &&
-                <div className='flex flex-col gap-2'>
-                    <p> Contact <span className='font-bold'>{landlord.userName}</span> for
-                        <span> {listing.name}</span></p>
-                    <textarea name='message' id='message' placeholder='Enter your message here'
-                        rows='2' value={message} onChange={(e) => { setMessage(e.target.value) }}
-                        className='w-full border p-3 rounded-lg'>
-                    </textarea>
-                    <Link to={`mailto:${landlord.email}?subject=Regarding ${listing.name}
-                     $body=${message}`}
-                     className='text-white bg-slate-700 text-center rounded-lg hover:opacity-55 uppercase p-3'>Send Meesage</Link>
-                </div>
-            }
+        <div className='flex flex-col gap-4'>
+            {landlord && (
+                <>
+                    <p>Contact <span className='font-bold'>{landlord.userName}</span> for <span>{listing.name}</span></p>
+                    <textarea
+                        name='message'
+                        id='message'
+                        placeholder='Enter your message here'
+                        rows='2'
+                        value={message}
+                        onChange={(e) => setMessage(e.target.value)}
+                        className='border border-gray-300 rounded-md p-2 w-full'
+                    />
+                    <Link 
+                        to={`mailto:${landlord.email}?subject=Regarding ${listing.name}&body=${message}`}
+                        className='bg-blue-500 text-white rounded-md py-2 px-4 text-center hover:bg-blue-600 transition-colors'>Send Message
+                    </Link>
+                </>
+            )}
         </div>
     )
 }
 
-export default Contact
+export default Contact;
