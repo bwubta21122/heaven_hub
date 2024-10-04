@@ -4,6 +4,7 @@ const Heaven = () => {
     return (
         <>
             <div className="relative w-full h-screen pt-24">
+                 <h1 className='text-center object-center font-thin'>NEXT CHAPTER THE RESIDENCES</h1>
                 <video
                     className="absolute top-0 left-0 w-full h-full object-cover"
                     autoPlay
@@ -44,6 +45,11 @@ const Heaven = () => {
             <div className=''>
                 <img className='bg-fixed w-full h-[680px]' src="https://images.coolwallpapers.me/picsup/2841140-landscape-nature-village-mountain-house-road-grass-shrubs-trees-valley___landscape-nature-wallpapers.jpg" />
             </div>
+            <div className='p-32 px-44'>
+                <p className='px-48 text-lg'>AMEYALLI’s spacious four-bedroom, four-bath luxury residences make the ideal mountain vacation home—beautifully appointed and fully furnished,  with expansive indoor and outdoor spaces to host families and guests. Interiors evoke a sense of casual elegance—a harmonious design that pays homage to the Park City area’s natural surroundings. The effortless second home ownership is afforded by the on-site property management by Ameyalli Hospitality. Unique to most vacation real estate, AMEYALLI offers a flexible fractional ownership option at an aspirational price.
+                </p>
+            </div>
+            <h1 className="text-center text-red-400 text-3xl font-thin ">NEXT  CHAPTER  THE  RESIDENCES</h1>
         </>
     )
 }
