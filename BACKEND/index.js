@@ -15,7 +15,8 @@ mongoose.connect(`${process.env.MONGO}/heaven_hub`).then(()=>{
 .catch((err)=>{
     console.log(err);
 })
-const __dirName=path.reolve();
+const __dirName=path.resolve();
+
 
 const app=express();
 const cors = require('cors');
