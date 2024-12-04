@@ -1,8 +1,8 @@
 {
-  "name": "heaven_hub",
+  "name": "server",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "BACKEND/index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon BACKEND/index.js",
