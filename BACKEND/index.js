@@ -6,6 +6,7 @@ const authRouter=require("./routes/authRouter");
 const listingRouter=require("./routes/listingRouter");
 
 const cookieParser=require("cookie-parser");
+const path=require("path");
 
 dotenv.config();
 mongoose.connect(`${process.env.MONGO}/heaven_hub`).then(()=>{
@@ -14,6 +15,7 @@ mongoose.connect(`${process.env.MONGO}/heaven_hub`).then(()=>{
 .catch((err)=>{
     console.log(err);
 })
+const __dirName=path.reolve();
 
 const app=express();
 const cors = require('cors');
@@ -36,6 +38,11 @@ app.listen(3000,()=>{
 app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
 app.use("/api/listing",listingRouter);
+
+app.use(express.static(path.join(__dirName,"/frontend/buil")));
+app.get("*",(req,res)=>{
+    res.sendFile(path.join(__dirName,"frontend","build","index.html"))
+})
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode || 500;

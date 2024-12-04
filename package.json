@@ -1,12 +1,13 @@
 {
-  "name": "server",
+  "name": "heaven_hub",
   "version": "1.0.0",
   "description": "",
-  "main": "BACKEND/index.js",
+  "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "dev": "nodemon BACKEND/index.js",
-    "start": "node BACKEND/index.js"
+    "start": "node BACKEND/index.js",
+    "build": "npm install && npm install --prefix frontend && npm run build --prefix frontend"
   },
   "keywords": [],
   "author": "",
