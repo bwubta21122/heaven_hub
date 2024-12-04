@@ -40,7 +40,9 @@ app.use("/api/user",userRouter);
 app.use("/api/auth",authRouter);
 app.use("/api/listing",listingRouter);
 
-app.use(express.static(path.join(__dirName,"/frontend/buil")));
+app.use(express.static(path.join(__dirName,"/frontend/build")));
+console.log(__dirName);
+
 app.get("*",(req,res)=>{
     res.sendFile(path.join(__dirName,"frontend","build","index.html"))
 })
