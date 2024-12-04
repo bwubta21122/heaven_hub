@@ -139,7 +139,7 @@ const UpdateListing = () => {
   };
 
   return (
-    <main className="p-6 mt-15 pt-32 max-w-6xl mx-auto bg-gray-100 rounded-lg shadow-lg">
+    <main className="p-6 mt-24 pt-32 max-w-6xl mx-auto bg-gray-100 rounded-lg shadow-lg">
       <h1 className="text-center font-bold text-4xl mb-6 text-blue-600">Update Listing</h1>
       {error && <div className="bg-red-200 text-red-800 p-4 rounded-lg mb-4">{error}</div>}
       <form onSubmit={handleSubmit} className="flex flex-col sm:flex-row gap-6">

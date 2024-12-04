@@ -51,6 +51,7 @@ const Header = () => {
 
           <nav className='flex gap-6'>
             <Link to='/home' className='hidden sm:block text-gray-700 hover:text-blue-600'>Home</Link>
+            <Link to='/foundation' className='hidden sm:block text-gray-700 hover:text-blue-600'>The Foundation</Link>
             <Link to='/about' className='hidden sm:block text-gray-700 hover:text-blue-600'>About</Link>
             <Link to='/profile'>
               {currentUser ? (

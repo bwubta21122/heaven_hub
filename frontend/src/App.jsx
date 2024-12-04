@@ -13,6 +13,7 @@ import Listings from './pages/Listings';
 import Search from './pages/Search';
 import Heaven from './pages/Heaven';
 import Footer from './components/Footer';
+import Foundation from './pages/Foundation';
 
 const App = () => {
   const location = useLocation();
@@ -27,6 +28,7 @@ const App = () => {
         <Route path="/sign-in" element={<SignIn />} />
         <Route path='/search' element={<Search />} />
         <Route path='/listing/:listingId' element={<Listings />} />
+        <Route path='/foundation' element={<Foundation />} />
         <Route element={<PrivateRoute />}>
           <Route path="/profile" element={<Profile />} />
           <Route path='/create-listing' element={<CreateListing />} />
@@ -34,7 +36,7 @@ const App = () => {
         </Route>
         <Route path="/sign-up" element={<SignUp />} />
       </Routes>
-      {location.pathname!== '/sign-in' && location.pathname!== '/sign-up' && location.pathname!=="/profile" &&(
+      {location.pathname!== '/sign-in' && location.pathname!== '/sign-up' && location.pathname!=="/profile" && location.pathname!== '/search' && (
         <Footer />
       )}
     </div>

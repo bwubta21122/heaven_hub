@@ -90,7 +90,7 @@ const Search = () => {
     };
 
     return (
-        <div className='flex flex-col md:flex-row '>
+        <div className='flex flex-col mt-24 md:flex-row '>
             <div className="p-7 border-b-2 md:border-r-2 md:min-h-screen">
                 <form onSubmit={handleSubmit} className='flex flex-col gap-6'>
                     <h2 className='text-2xl font-bold mb-4'>Search Listings</h2>

@@ -50,7 +50,7 @@ export default function Listing() {
     }, [params.listingId]);
 
     return (
-        <main className="">
+        <main className="mt-24">
             {loading && <p className='text-center my-7 text-2xl'>Loading...</p>}
             {error && (
                 <p className='text-center my-7 text-2xl text-red-600'>Something went wrong!</p>

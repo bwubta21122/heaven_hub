@@ -38,25 +38,25 @@ const Home = () => {
 
   return (
     <>
-    <div
+      <div 
         className="h-screen bg-fixed bg-center bg-cover"
         style={{
           backgroundImage: "url('https://www.gibsonarchitecture.com/wp-content/uploads/2018/08/MB1.jpg')",
         }}
       ></div>
-    <div className="container mx-auto p-4 pt-6 md:p-6">
-      <div className="flex flex-col gap-8 p-8 lg:p-20 max-w-6xl mx-auto">
-        <h1 className='font-bold text-4xl text-slate-800 lg:text-6xl'>
-          Find Your Next Perfect Place with Ease
-        </h1>
-        <p className='text-gray-600 text-base lg:text-lg'>
-          Discover a wide variety of listings tailored just for you. Let us help you find the perfect home!
-        </p>
-        <Link to="/search" className='text-lg text-blue-600 bg-blue-100 hover:bg-blue-200 py-2 px-4 rounded-lg transition duration-300'>
-          Let’s Get Started...
-        </Link>
-      </div>
-      
+      <div className="container mx-auto p-4 pt-6 md:p-6">
+        <div className="flex flex-col gap-8 p-8 lg:p-20 max-w-6xl mx-auto">
+          <h1 className='font-bold text-4xl text-slate-800 lg:text-6xl'>
+            Find Your Next Perfect Place with Ease
+          </h1>
+          <p className='text-gray-600 text-base lg:text-lg'>
+            Discover a wide variety of listings tailored just for you. Let us help you find the perfect home!
+          </p>
+          <Link to="/search" className='text-lg text-blue-600 bg-blue-100 hover:bg-blue-200 py-2 px-4 rounded-lg transition duration-300'>
+            Let’s Get Started...
+          </Link>
+        </div>
+
 
 
         <Swiper navigation className="my-8">
@@ -116,9 +116,14 @@ const Home = () => {
             </div>
           )}
         </div>
+
+        <Link to="/foundation">
+          <h1 className="text-center mt-10 text-red-400 text-3xl font-thin hover:underline ">NEXT  CHAPTER  THE FOUNDATION</h1>
+        </Link>
+
       </div >
-      </>
-      );
+    </>
+  );
 };
 
-      export default Home;
+export default Home;

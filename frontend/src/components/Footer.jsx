@@ -1,24 +1,31 @@
-import React from 'react'
+import React from 'react';
+import { FaInstagram, FaLinkedin } from 'react-icons/fa';
 
 const Footer = () => {
   return (
-    <div>
-      <footer class="bg-white py-6 mt-10">
-        <div class="container mx-auto px-4 mb-20 text-center">
-        <div class="flex justify-center space-x-4 mb-10">
-            <a href="https://www.instagram.com/" class="text-gray-600 hover:text-gray-900">Instagram</a>
-            <a href="https://www.linkedin.com/" class="text-gray-600 hover:text-gray-900">LinkedIn</a>
-          </div>
-          <p class="text-lg mb-10">832 N Wellness Drive, Midway, UT 84049</p>
-          <p class="text-lg mb-20">888 680-1814 | sales@ameyalli.com</p>
-          
-          <p className='text-sm mb-2'>Copyright © 2024 AMEYALLI </p>
-          <p className="text-sm mb-10">&copy; 2024 AMEYALLI. Christie's International Real Estate. All Rights Reserved.</p>
-          <p className="text-sm mb-3">PRIVACY POLICY | LEGAL</p>
+    <footer className="bg-gray-100 text-black py-10 mt-5">
+      <div className="container mx-auto text-center">
+        <div className="flex justify-center space-x-8 mb-6">
+          <a href="https://www.instagram.com/" className="text-gray-400 hover:text-white">
+            <FaInstagram size={24} />
+          </a>
+          <a href="https://www.linkedin.com/" className="text-gray-400 hover:text-white">
+            <FaLinkedin size={24} />
+          </a>
         </div>
-      </footer>
-    </div>
-  )
-}
 
-export default Footer
+        <p className="text-lg mb-4">832 N Wellness Drive, Midway, UT 84049</p>
+        <p className="text-lg mb-8">888 680-1814 | sales@ameyalli.com</p>
+        
+        <div className="mb-8">
+          <p className="text-sm">Copyright © 2024 | ABHINASH MISHRA</p>
+          <p className="text-sm">&copy; 2024 AMEYALLI. Christie's International Real Estate. All Rights Reserved.</p>
+        </div>
+
+        <p className="text-sm underline cursor-pointer">PRIVACY POLICY | LEGAL</p>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
