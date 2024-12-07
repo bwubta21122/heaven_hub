@@ -36,9 +36,9 @@ app.listen(3000,()=>{
     console.log("server is runnning in 3000");
 });
 
-app.use("/user",userRouter);
-app.use("/auth",authRouter);
-app.use("/listing",listingRouter);
+app.use("/api/user",userRouter);
+app.use("/api/auth",authRouter);
+app.use("/api/listing",listingRouter);
 
 app.use((err,req,res,next)=>{
     const statusCode=err.statusCode || 500;
