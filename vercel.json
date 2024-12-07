@@ -1,17 +1,14 @@
 {
     "version": 2,
-    "rewrites": [{ "source": "/(.*)", "destination": "/appolo" }],
-    "builds": [
-     {
-      "src": "BACKEND/index.js",
-      "use": "@vercel/node",
-      "config": { "includeFiles": ["dist/**"] }
-     }
+    "rewrites": [
+        { "source": "/(.*)", "destination": "/appolo" },
+        { "source": "/(.*)", "destination": "BACKEND/index.js" }
     ],
-    "routes": [
-     {
-      "src": "/(.*)",
-      "dest": "BACKEND/index.js"
-     }
+    "builds": [
+        {
+            "src": "BACKEND/index.js",
+            "use": "@vercel/node",
+            "config": { "includeFiles": ["dist/**"] }
+        }
     ]
-   }
+}
