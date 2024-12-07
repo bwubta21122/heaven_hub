@@ -1,14 +1,15 @@
 {
     "version": 2,
-    "rewrites": [
-        { "source": "/(.*)", "destination": "/appolo" },
-        { "source": "/(.*)", "destination": "BACKEND/index.js" }
-    ],
     "builds": [
         {
             "src": "BACKEND/index.js",
-            "use": "@vercel/node",
-            "config": { "includeFiles": ["dist/**"] }
+            "use": "@vercel/node"
+        }
+    ],
+    "routes": [
+        {
+            "src": "/api/(.*)",
+            "dest": "BACKEND/index.js"
         }
     ]
 }
